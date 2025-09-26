@@ -1,4 +1,85 @@
 /* ===========================
+   Scroll Reveal
+=========================== */
+const reveals = document.querySelectorAll(".reveal");
+
+function revealOnScroll() {
+  const windowHeight = window.innerHeight;
+  const revealPoint = 150;
+
+  for (let i = 0; i < reveals.length; i++) {
+    const revealTop = reveals[i].getBoundingClientRect().top;
+
+    if (revealTop < windowHeight - revealPoint) {
+      reveals[i].classList.add("active");
+    } else {
+      reveals[i].classList.remove("active");
+    }
+  }
+}
+
+window.addEventListener("scroll", revealOnScroll);
+
+/* ===========================
+   Animated Counters
+=========================== */
+const counters = document.querySelectorAll(".counter");
+
+function runCounters() {
+  counters.forEach(counter => {
+    counter.innerText = "0";
+    const updateCounter = () => {
+      const target = +counter.getAttribute("data-target");
+      const current = +counter.innerText;
+      const increment = target / 200; // adjust speed here
+
+      if (current < target) {
+        counter.innerText = `${Math.ceil(current + increment)}`;
+        setTimeout(updateCounter, 15);
+      } else {
+        counter.innerText = target;
+      }
+    };
+    updateCounter();
+  });
+}
+
+window.addEventListener("load", runCounters);
+
+/* ===========================
+   Parallax Effect
+=========================== */
+window.addEventListener("scroll", function() {
+  const scrolled = window.scrollY;
+  const hero = document.querySelector(".hero");
+  hero.style.backgroundPositionY = -(scrolled * 0.3) + "px";
+});
+
+/* ===========================
+   Active Nav Highlight
+=========================== */
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav-links li a");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 80;
+    const sectionHeight = section.clientHeight;
+    if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === "#" + current) {
+      link.classList.add("active");
+    }
+  });
+});
+/* ===========================
    Typewriter Effect
 =========================== */
 const typewriter = document.getElementById("typewriter");
@@ -8,8 +89,8 @@ const texts = [
   "Building Healthier AI Environments"
 ];
 
-let i = 0; 
-let j = 0; 
+let i = 0; // index of texts
+let j = 0; // index of character
 let currentText = "";
 let isDeleting = false;
 
@@ -21,7 +102,7 @@ function type() {
     j++;
     if (j === currentText.length) {
       isDeleting = true;
-      setTimeout(type, 1500);
+      setTimeout(type, 1500); // wait before deleting
       return;
     }
   } else {
@@ -33,110 +114,8 @@ function type() {
     }
   }
 
-  const speed = isDeleting ? 60 : 100;
+  const speed = isDeleting ? 60 : 100; // typing & deleting speed
   setTimeout(type, speed);
 }
+
 document.addEventListener("DOMContentLoaded", type);
-
-/* ===========================
-   Counter Animation
-=========================== */
-const counters = document.querySelectorAll(".counter");
-counters.forEach(counter => {
-  counter.innerText = "0";
-  const updateCounter = () => {
-    const target = +counter.getAttribute("data-target");
-    const c = +counter.innerText;
-    const increment = target / 200;
-    if (c < target) {
-      counter.innerText = `${Math.ceil(c + increment)}`;
-      setTimeout(updateCounter, 20);
-    } else {
-      counter.innerText = target;
-    }
-  };
-  updateCounter();
-});
-
-/* ===========================
-   Navbar Active Link
-=========================== */
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll(".nav-links a");
-
-window.addEventListener("scroll", () => {
-  let current = "";
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop - 100;
-    if (pageYOffset >= sectionTop) {
-      current = section.getAttribute("id");
-    }
-  });
-  navLinks.forEach(link => {
-    link.classList.remove("active");
-    if (link.getAttribute("href") === `#${current}`) {
-      link.classList.add("active");
-    }
-  });
-});
-
-/* ===========================
-   Scroll Animations (Fade Up & Down)
-=========================== */
-const scrollElements = document.querySelectorAll(".scroll-animate");
-let lastScrollTop = 0;
-
-window.addEventListener("scroll", () => {
-  let scrollTop = window.scrollY;
-
-  scrollElements.forEach(el => {
-    const elementTop = el.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
-
-    if (elementTop < windowHeight - 100 && elementTop > 50) {
-      if (scrollTop > lastScrollTop) {
-        // scrolling down
-        el.classList.add("show-up");
-        el.classList.remove("show-down");
-      } else {
-        // scrolling up
-        el.classList.add("show-down");
-        el.classList.remove("show-up");
-      }
-    }
-  });
-
-  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-}, false);
-/* ===========================
-   Scroll Animations Fade Up & Down
-=========================== */
-const scrollElements = document.querySelectorAll(".scroll-animate");
-let lastScrollTop = 0;
-
-window.addEventListener("scroll", () => {
-  let scrollTop = window.scrollY;
-
-  scrollElements.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    const inView = rect.top < window.innerHeight - 100 && rect.bottom > 100;
-
-    if (inView) {
-      if (scrollTop > lastScrollTop) {
-        // scrolling down → fade up
-        el.classList.add("show-up");
-        el.classList.remove("show-down");
-      } else {
-        // scrolling up → fade down
-        el.classList.add("show-down");
-        el.classList.remove("show-up");
-      }
-    } else {
-      // Reset kalau keluar layar
-      el.classList.remove("show-up");
-      el.classList.remove("show-down");
-    }
-  });
-
-  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-});
