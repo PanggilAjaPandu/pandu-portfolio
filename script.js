@@ -176,7 +176,7 @@ playBtn.addEventListener("click", () => {
 
   setTimeout(() => {
     // Step 3: 😎 + shake
-    introText.textContent = "😎";
+    introText.textContent = "🤘😎🖐️";
     introText.classList.add("shake");
   }, 3000); // 2 + 1 detik
 

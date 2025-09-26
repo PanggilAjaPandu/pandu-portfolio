@@ -13,14 +13,15 @@
 </head>
 <body>
   <!-- Overlay Start Screen -->
-<div id="start-screen">
-  <div class="play-button" id="play-button">▶</div>
-  <div class="intro-text" id="intro-text" style="display:none;"></div>
-</div>
-<!-- Background Music -->
-<audio id="bg-music" loop>
-  <source src="wwd.mp3juice.blog - Adnan Gufrona MW - Poppin in the Club (320 KBps).mp3" type="audio/mpeg">
-</audio>
+  <div id="start-screen">
+    <div class="play-button" id="play-button">▶</div>
+    <div class="intro-text" id="intro-text" style="display:none;"></div>
+  </div>
+
+  <!-- Background Music -->
+  <audio id="bg-music" loop>
+    <source src="bg-music.mp3" type="audio/mpeg">
+  </audio>
 
   <!-- Navigation -->
   <header class="navbar" data-aos="fade-down">
@@ -38,29 +39,28 @@
   </header>
 
   <!-- Hero -->
-<section id="hero" class="hero scroll-animate">
-  <!-- Bagian kiri (teks) -->
-  <div class="hero-content">
-    <h1>Hi, I'm <span>Pandu Prayoga</span></h1>
-    <h2>Informatics Student at Brawijaya University</h2>
-    <p>A student interested in how AI works. I want to create a healthier, more filtered AI environment.</p>
-    <div class="hero-buttons">
-      <a href="#projects" class="btn">See my work</a>
-      <a href="mailto:pandskeandre@gmail.com" class="btn">Email me</a>
+  <section id="hero" class="hero">
+    <!-- Bagian kiri (teks) -->
+    <div class="hero-content">
+      <h1>Hi, I'm <span>Pandu Prayoga</span></h1>
+      <h2>Informatics Student at Brawijaya University</h2>
+      <p>A student interested in how AI works. I want to create a healthier, more filtered AI environment.</p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn">See my work</a>
+        <a href="mailto:pandskeandre@gmail.com" class="btn">Email me</a>
+      </div>
+      <div class="hero-stats">
+        <div><span class="counter" data-target="82">0</span><p>Followers</p></div>
+        <div><span class="counter" data-target="0">0</span><p>Projects</p></div>
+        <div><span class="counter" data-target="0">0</span><p>Claps</p></div>
+      </div>
     </div>
-    <div class="hero-stats">
-      <div><span class="counter" data-target="82">0</span><p>Followers</p></div>
-      <div><span class="counter" data-target="0">0</span><p>Projects</p></div>
-      <div><span class="counter" data-target="0">0</span><p>Claps</p></div>
+
+    <!-- Bagian kanan (foto) -->
+    <div class="hero-image">
+      <img src="pp.png" alt="Portrait of Pandu Prayoga" class="profile-pic">
     </div>
-  </div>
-
-  <!-- Bagian kanan (foto) -->
-  <div class="hero-image">
-    <img src="pp.png" alt="Pandu Prayoga" class="profile-pic">
-  </div>
-</section>
-
+  </section>
 
   <!-- Background Video -->
   <video autoplay muted loop id="bg-video">
@@ -131,11 +131,12 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({
-      duration: 500,
+      duration: 600,
       once: true,
       easing: 'ease-in-out'
     });
   </script>
+
   <!-- Scripts -->
   <script src="script.js"></script>
 </body>
