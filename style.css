@@ -305,3 +305,21 @@ body::before {
   opacity: 1;
   transform: translateY(-20px);
 }
+/* Default hidden */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+/* Muncul pas scroll down */
+.scroll-animate.show-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Muncul pas scroll up */
+.scroll-animate.show-down {
+  opacity: 1;
+  transform: translateY(-20px);
+}

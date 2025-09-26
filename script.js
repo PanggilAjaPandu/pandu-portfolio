@@ -108,3 +108,35 @@ window.addEventListener("scroll", () => {
 
   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 }, false);
+/* ===========================
+   Scroll Animations Fade Up & Down
+=========================== */
+const scrollElements = document.querySelectorAll(".scroll-animate");
+let lastScrollTop = 0;
+
+window.addEventListener("scroll", () => {
+  let scrollTop = window.scrollY;
+
+  scrollElements.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight - 100 && rect.bottom > 100;
+
+    if (inView) {
+      if (scrollTop > lastScrollTop) {
+        // scrolling down → fade up
+        el.classList.add("show-up");
+        el.classList.remove("show-down");
+      } else {
+        // scrolling up → fade down
+        el.classList.add("show-down");
+        el.classList.remove("show-up");
+      }
+    } else {
+      // Reset kalau keluar layar
+      el.classList.remove("show-up");
+      el.classList.remove("show-down");
+    }
+  });
+
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+});
