@@ -188,3 +188,42 @@ playBtn.addEventListener("click", () => {
     }, 1000);
   }, 5000); // total 2 + 1 + 2 detik
 });
+const bgMusic = document.getElementById("bg-music");
+const playBtn = document.getElementById("play-button");
+const introText = document.getElementById("intro-text");
+const startScreen = document.getElementById("start-screen");
+const musicToggle = document.getElementById("music-toggle");
+
+// Start screen logic
+if (playBtn) {
+  playBtn.addEventListener("click", () => {
+    // Jalankan intro text animasi
+    introText.style.display = "block";
+    introText.innerText = "Welcome to my portfolio";
+    introText.classList.add("shake");
+
+    setTimeout(() => {
+      introText.innerText = "Enjoy";
+    }, 2000);
+
+    setTimeout(() => {
+      introText.innerText = "😎";
+    }, 3000);
+
+    setTimeout(() => {
+      startScreen.classList.add("hidden");
+      bgMusic.play(); // baru mulai musik
+    }, 5000);
+  });
+}
+
+// Toggle music mute/unmute
+musicToggle.addEventListener("click", () => {
+  if (bgMusic.muted) {
+    bgMusic.muted = false;
+    musicToggle.textContent = "🔊";
+  } else {
+    bgMusic.muted = true;
+    musicToggle.textContent = "🔇";
+  }
+});
