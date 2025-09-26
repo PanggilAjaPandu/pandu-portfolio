@@ -163,22 +163,28 @@ const musicToggle = document.getElementById("music-toggle");
 if (playBtn) {
   playBtn.addEventListener("click", async () => {
     try {
-      // Pastikan musik dimulai langsung saat klik (biar lolos policy browser)
+      // Play musik langsung setelah klik
       await bgMusic.play();
 
-      // Jalankan animasi intro text
+      // Sembunyikan tombol ▶ agar tidak bisa diklik lagi
+      playBtn.style.display = "none";
+
+      // Tampilkan teks intro dengan animasi
       introText.style.display = "block";
       introText.innerText = "Welcome to my portfolio";
       introText.classList.add("shake");
 
       setTimeout(() => {
         introText.innerText = "Enjoy";
+        introText.classList.add("shake");
       }, 2000);
 
       setTimeout(() => {
         introText.innerText = "🤘😎🖐️";
+        introText.classList.add("shake");
       }, 3100);
 
+      // Setelah animasi selesai → hilangkan overlay
       setTimeout(() => {
         startScreen.classList.add("hidden");
       }, 5000);
@@ -192,8 +198,9 @@ if (playBtn) {
 // Toggle mute/unmute musik
 if (musicToggle) {
   musicToggle.addEventListener("click", () => {
-    if (bgMusic.muted) {
+    if (bgMusic.muted || bgMusic.volume === 0) {
       bgMusic.muted = false;
+      bgMusic.volume = 1;
       musicToggle.textContent = "🔊";
     } else {
       bgMusic.muted = true;
