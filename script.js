@@ -154,49 +154,37 @@ window.addEventListener("scroll", () => {
 });
 /* === Start Screen Logic === */
 const startScreen = document.getElementById("start-screen");
-const playBtn = document.querySelector(".play-button");
+const playBtn = document.getElementById("play-button");
+const introText = document.getElementById("intro-text");
 const bgMusic = document.getElementById("bg-music");
 
 playBtn.addEventListener("click", () => {
   // Play musik
   bgMusic.play();
 
-  // Hilangkan overlay
-  startScreen.classList.add("hidden");
+  // Sembunyikan tombol Play
+  playBtn.style.display = "none";
+  introText.style.display = "block";
 
-  // Hapus dari DOM setelah animasi
-  setTimeout(() => {
-    startScreen.style.display = "none";
-  }, 1000);
-});
-/* === Start Screen Logic === */
-const startScreen = document.getElementById("start-screen");
-const introText = document.getElementById("intro-text");
-const bgMusic = document.getElementById("bg-music");
-
-introText.addEventListener("click", () => {
-  // Play musik
-  bgMusic.play();
-
-  // Step 1: ganti teks ke Welcome
+  // Step 1: Welcome
   introText.textContent = "Welcome to my portfolio";
 
   setTimeout(() => {
-    // Step 2: ganti teks ke Enjoy
+    // Step 2: Enjoy
     introText.textContent = "Enjoy";
-  }, 2000); // setelah 2 detik
+  }, 2000); // 2 detik
 
   setTimeout(() => {
-    // Step 3: ganti teks ke 😎 + shake
+    // Step 3: 😎 + shake
     introText.textContent = "😎";
     introText.classList.add("shake");
   }, 3000); // 2 + 1 detik
 
   setTimeout(() => {
-    // Step 4: hilangkan overlay
+    // Step 4: Hilangkan overlay
     startScreen.classList.add("hidden");
     setTimeout(() => {
       startScreen.style.display = "none";
     }, 1000);
-  }, 5000); // 2 + 1 + 2 detik
+  }, 5000); // total 2 + 1 + 2 detik
 });

@@ -572,3 +572,9 @@ body::before {
 .shake {
   animation: shake 0.5s ease-in-out infinite;
 }
+.intro-text {
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
