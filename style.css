@@ -82,23 +82,29 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  flex-direction: column;
-  background: rgba(0,0,0,0.4);
+  text-align: left;   /* teks rata kiri */
+  padding: 100px 10%;
+  gap: 50px;          /* jarak antara teks & foto */
 }
 
 .hero-content {
-  max-width: 900px;
+  flex: 1;            /* bagian teks */
+}
+
+.hero-image {
+  flex: 0 0 250px;    /* bagian foto */
+  display: flex;
+  justify-content: center;
 }
 
 .profile-pic {
-  width: 160px;
-  height: 160px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 20px;
   border: 4px solid #fff;
 }
+
 
 .hero h1 {
   font-size: 42px;
