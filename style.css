@@ -184,60 +184,58 @@ body::before {
 ======================= */
 .about {
   background: transparent;
-  border-radius: 15px;
-  padding: 80px;
+  padding: 80px 20px;
   margin: auto;
+  text-align: center;      /* center text */
+  max-width: 800px;        /* optional: keep readable width */
 }
 
-/* =======================
-   Skills Section
-======================= */
-.skills {
+.about-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* center horizontally */
+  gap: 15px;
+}
+
+.about p {
   text-align: center;
 }
 
-.skill-card {
-  display: inline-block;
-  margin: 15px;
-  padding: 20px 30px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-.skill-card:hover {
-  background: #4dabf7;
-  color: #fff;
+/* =======================
+   Projects Section
+======================= */
+.projects {
+  text-align: center;      /* center all content */
+  margin: auto;
+  max-width: 800px;
 }
 
 /* =======================
    Timeline Section
 ======================= */
 .timeline {
-  border-left: 3px solid #4dabf7;
-  padding-left: 40px;
+  text-align: center;      /* center headings & content */
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 60px 20px;
+  border-left: none;       /* remove the blue vertical line */
 }
 
 .timeline-item {
-  margin-bottom: 40px;
   position: relative;
+  margin: 30px auto;
+  padding: 20px;
   background: transparent;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* center text horizontally */
+  text-align: center;
 }
 
-.timeline-item h3 {
-  color: #4dabf7;
-}
-
+/* Remove timeline dots */
 .timeline-item::before {
-  content: "";
-  position: absolute;
-  left: -18px;
-  top: 5px;
-  width: 12px;
-  height: 12px;
-  background: #4dabf7;
-  border-radius: 50%;
+  content: none;
 }
 
 /* =======================
@@ -287,4 +285,23 @@ body::before {
   border-right: 2px solid #4dabf7;
   white-space: nowrap;
   overflow: hidden;
+}
+
+/* Hidden state */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Scroll down (fade up) */
+.scroll-animate.show-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scroll up (fade down) */
+.scroll-animate.show-down {
+  opacity: 1;
+  transform: translateY(-20px);
 }

@@ -81,15 +81,30 @@ window.addEventListener("scroll", () => {
 });
 
 /* ===========================
-   Scroll Reveal (disabled, using AOS instead)
+   Scroll Animations (Fade Up & Down)
 =========================== */
-// const reveals = document.querySelectorAll(".reveal");
-// window.addEventListener("scroll", () => {
-//   reveals.forEach(reveal => {
-//     const windowHeight = window.innerHeight;
-//     const revealTop = reveal.getBoundingClientRect().top;
-//     if (revealTop < windowHeight - 100) {
-//       reveal.classList.add("active");
-//     }
-//   });
-// });
+const scrollElements = document.querySelectorAll(".scroll-animate");
+let lastScrollTop = 0;
+
+window.addEventListener("scroll", () => {
+  let scrollTop = window.scrollY;
+
+  scrollElements.forEach(el => {
+    const elementTop = el.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (elementTop < windowHeight - 100 && elementTop > 50) {
+      if (scrollTop > lastScrollTop) {
+        // scrolling down
+        el.classList.add("show-up");
+        el.classList.remove("show-down");
+      } else {
+        // scrolling up
+        el.classList.add("show-down");
+        el.classList.remove("show-up");
+      }
+    }
+  });
+
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+}, false);
