@@ -82,17 +82,17 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: left;   /* teks rata kiri */
+  text-align: left;
   padding: 100px 10%;
-  gap: 50px;          /* jarak antara teks & foto */
+  gap: 50px;
 }
 
 .hero-content {
-  flex: 1;            /* bagian teks */
+  flex: 1;
 }
 
 .hero-image {
-  flex: 0 0 250px;    /* bagian foto */
+  flex: 0 0 250px;
   display: flex;
   justify-content: center;
 }
@@ -124,7 +124,6 @@ p {
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .btn {
@@ -144,7 +143,6 @@ p {
 .hero-stats {
   margin-top: 40px;
   display: flex;
-  justify-content: center;
   gap: 40px;
 }
 
@@ -166,6 +164,8 @@ p {
   border-radius: 15px;
   padding: 80px;
   margin: auto;
+  text-align: center;
+  max-width: 900px;
 }
 
 .about ul {
@@ -192,11 +192,20 @@ p {
   border-radius: 12px;
   font-weight: 600;
   transition: 0.3s;
+  cursor: pointer;
+  box-shadow: 0 0 0 rgba(77, 171, 247, 0.7);
+  animation: pulse 2s infinite;
 }
 
 .skill-card:hover {
   background: #4dabf7;
   color: #fff;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 rgba(77, 171, 247, 0.7); }
+  70% { box-shadow: 0 0 20px rgba(77, 171, 247, 0); }
+  100% { box-shadow: 0 0 0 rgba(77, 171, 247, 0); }
 }
 
 /* =======================
@@ -214,28 +223,32 @@ p {
    Timeline Section
 ======================= */
 .timeline {
-  border-left: 3px solid #4dabf7;
-  padding-left: 40px;
+  text-align: center;
+  padding: 100px 20px;
+  border-radius: 15px;
+  margin: 50px auto;
+  max-width: 1000px;
+  backdrop-filter: blur(10px);
+  animation: fadeUp 1.5s ease forwards;
+  opacity: 0;
 }
 
 .timeline-item {
-  margin-bottom: 40px;
-  position: relative;
+  margin: 20px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  max-width: 600px;
 }
 
 .timeline-item h3 {
   color: #4dabf7;
 }
 
-.timeline-item::before {
-  content: "";
-  position: absolute;
-  left: -18px;
-  top: 5px;
-  width: 12px;
-  height: 12px;
-  background: #4dabf7;
-  border-radius: 50%;
+.timeline-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 /* =======================
@@ -264,11 +277,10 @@ p {
   background: rgba(0,0,0,0.6);
   font-size: 14px;
 }
+
 /* =======================
    Animations & Effects
 ======================= */
-
-/* Fade-in animation */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -280,34 +292,24 @@ p {
   transform: translateY(0);
 }
 
-/* Hero text fade in order */
-.hero h1, .hero h2, .hero p, .hero-buttons, .hero-stats {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 1s ease forwards;
-}
-
-.hero h1 {
-  animation-delay: 0.3s;
-}
-.hero h2 {
-  animation-delay: 0.6s;
-}
-.hero p {
-  animation-delay: 0.9s;
-}
-.hero-buttons {
-  animation-delay: 1.2s;
-}
-.hero-stats {
-  animation-delay: 1.5s;
-}
-
 @keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll Animations */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+.scroll-animate.show-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+.scroll-animate.show-down {
+  opacity: 1;
+  transform: translateY(-20px);
 }
 
 /* Button hover glow */
@@ -315,7 +317,6 @@ p {
   position: relative;
   overflow: hidden;
 }
-
 .btn::after {
   content: "";
   position: absolute;
@@ -327,45 +328,10 @@ p {
   transform: rotate(25deg);
   transition: 0.5s;
 }
-
 .btn:hover::after {
   left: 100%;
 }
 
-/* Skill card pulse */
-.skill-card {
-  cursor: pointer;
-  box-shadow: 0 0 0 rgba(77, 171, 247, 0.7);
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 rgba(77, 171, 247, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 20px rgba(77, 171, 247, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 rgba(77, 171, 247, 0);
-  }
-}
-
-/* Section transitions */
-section {
-  transition: background 1s ease, color 1s ease;
-}
-
-section:hover {
-}
-
-/* Parallax background */
-.hero {
-  background-image: url("WhatsApp Video 2025-09-26 at 8.30.59 AM.mp4"); /* replace with your image */
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
-}
 /* Typewriter Cursor */
 #typewriter {
   display: inline-block;
@@ -373,66 +339,7 @@ section:hover {
   white-space: nowrap;
   overflow: hidden;
 }
-/* === ABOUT SECTION === */
-#about {
-  text-align: center;
-  padding: 100px 20px;
-  max-width: 900px;
-  margin: auto;
-}
 
-#about .about-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-#about p {
-  font-size: 1.1rem;
-  color: #ddd;
-  max-width: 700px;
-  line-height: 1.7;
-  text-align: center;
-}
-
-/* === TIMELINE SECTION === */
-#timeline {
-  text-align: center;
-  padding: 100px 20px;
-  border-radius: 15px;
-  margin: 50px auto;
-  max-width: 1000px;
-  backdrop-filter: blur(10px);
-  animation: fadeUp 1.5s ease forwards;
-  opacity: 0;
-}
-
-.timeline-item {
-  margin: 20px 0;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.timeline-item:hover {
-  transform: translateY(-8px);
-  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.3);
-}
-
-/* === ANIMATIONS === */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 /* === Video Background === */
 #bg-video {
   position: fixed;
@@ -441,8 +348,8 @@ section:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -2; /* di belakang overlay */
-  filter: brightness(0.6); /* biar teks lebih jelas */
+  z-index: -2;
+  filter: brightness(0.6);
 }
 
 /* === Overlay Gelap === */
@@ -453,46 +360,8 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* layer gelap tipis */
-  z-index: -1; /* di atas video, di bawah konten */
-}
-
-/* === Section Transparan === */
-.hero,
-.about,
-.timeline-item {
-  background: transparent !important;
-  box-shadow: none !important; /* hapus efek kotak */
-}
-
-/* === Hero Section (tengah) === */
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  flex-direction: column;
-  padding: 100px 20px;
-  color: #fff; /* teks putih biar kontras */
-}
-
-/* === SCROLL ANIMATIONS === */
-.scroll-animate {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease;
-}
-
-/* Muncul pas scroll down */
-.scroll-animate.show-up {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Muncul pas scroll up */
-.scroll-animate.show-down {
-  opacity: 1;
-  transform: translateY(-20px);
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
 }
 
 /* === Start Screen Overlay === */
@@ -502,12 +371,12 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(10px); /* blur background */
-  background: rgba(0, 0, 0, 0.7); /* gelap */
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2000; /* di atas semua konten */
+  z-index: 2000;
   transition: opacity 1s ease;
 }
 
@@ -531,33 +400,17 @@ body::before {
   cursor: pointer;
   transition: transform 0.3s ease, background 0.3s ease;
 }
-
 .play-button:hover {
   transform: scale(1.1);
   background: rgba(255, 255, 255, 0.3);
 }
-/* === Start Screen Overlay === */
-#start-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(10px);
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-  transition: opacity 1s ease;
-  color: white;
+
+/* Intro Text */
+.intro-text {
   font-size: 40px;
   font-weight: bold;
-}
-
-#start-screen.hidden {
-  opacity: 0;
-  pointer-events: none;
+  color: white;
+  text-align: center;
 }
 
 /* Animasi getar */
@@ -568,13 +421,6 @@ body::before {
   75% { transform: translate(-3px, 0); }
   100% { transform: translate(0, 0); }
 }
-
 .shake {
   animation: shake 0.5s ease-in-out infinite;
-}
-.intro-text {
-  font-size: 40px;
-  font-weight: bold;
-  color: white;
-  text-align: center;
 }
