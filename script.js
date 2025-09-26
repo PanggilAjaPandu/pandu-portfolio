@@ -201,15 +201,3 @@ if (musicToggle) {
     }
   });
 }
-
-
-// Toggle music mute/unmute
-musicToggle.addEventListener("click", () => {
-  if (bgMusic.muted) {
-    bgMusic.muted = false;
-    musicToggle.textContent = "🔊";
-  } else {
-    bgMusic.muted = true;
-    musicToggle.textContent = "🔇";
-  }
-});
