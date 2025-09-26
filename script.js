@@ -163,13 +163,13 @@ const musicToggle = document.getElementById("music-toggle");
 if (playBtn) {
   playBtn.addEventListener("click", async () => {
     try {
-      // Play musik langsung setelah klik
+      // Play musik langsung
       await bgMusic.play();
 
-      // Sembunyikan tombol ▶ agar tidak bisa diklik lagi
-      playBtn.style.display = "none";
+      // Hilangkan tombol ▶ dengan animasi
+      playBtn.classList.add("hidden");
 
-      // Tampilkan teks intro dengan animasi
+      // Tampilkan teks intro
       introText.style.display = "block";
       introText.innerText = "Welcome to my portfolio";
       introText.classList.add("shake");
@@ -184,7 +184,7 @@ if (playBtn) {
         introText.classList.add("shake");
       }, 3100);
 
-      // Setelah animasi selesai → hilangkan overlay
+      // Setelah animasi selesai, sembunyikan seluruh overlay
       setTimeout(() => {
         startScreen.classList.add("hidden");
       }, 5000);
