@@ -169,3 +169,34 @@ playBtn.addEventListener("click", () => {
     startScreen.style.display = "none";
   }, 1000);
 });
+/* === Start Screen Logic === */
+const startScreen = document.getElementById("start-screen");
+const introText = document.getElementById("intro-text");
+const bgMusic = document.getElementById("bg-music");
+
+introText.addEventListener("click", () => {
+  // Play musik
+  bgMusic.play();
+
+  // Step 1: ganti teks ke Welcome
+  introText.textContent = "Welcome to my portfolio";
+
+  setTimeout(() => {
+    // Step 2: ganti teks ke Enjoy
+    introText.textContent = "Enjoy";
+  }, 2000); // setelah 2 detik
+
+  setTimeout(() => {
+    // Step 3: ganti teks ke 😎 + shake
+    introText.textContent = "😎";
+    introText.classList.add("shake");
+  }, 3000); // 2 + 1 detik
+
+  setTimeout(() => {
+    // Step 4: hilangkan overlay
+    startScreen.classList.add("hidden");
+    setTimeout(() => {
+      startScreen.style.display = "none";
+    }, 1000);
+  }, 5000); // 2 + 1 + 2 detik
+});
