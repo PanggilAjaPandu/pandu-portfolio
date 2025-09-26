@@ -152,3 +152,20 @@ window.addEventListener("scroll", () => {
 
   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
+/* === Start Screen Logic === */
+const startScreen = document.getElementById("start-screen");
+const playBtn = document.querySelector(".play-button");
+const bgMusic = document.getElementById("bg-music");
+
+playBtn.addEventListener("click", () => {
+  // Play musik
+  bgMusic.play();
+
+  // Hilangkan overlay
+  startScreen.classList.add("hidden");
+
+  // Hapus dari DOM setelah animasi
+  setTimeout(() => {
+    startScreen.style.display = "none";
+  }, 1000);
+});
