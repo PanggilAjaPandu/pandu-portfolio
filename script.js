@@ -153,12 +153,6 @@ window.addEventListener("scroll", () => {
   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
 
-const bgMusic = document.getElementById("bg-music");
-const playBtn = document.getElementById("play-button");
-const introText = document.getElementById("intro-text");
-const startScreen = document.getElementById("start-screen");
-const musicToggle = document.getElementById("music-toggle");
-
 // Start screen logic
 if (playBtn) {
   playBtn.addEventListener("click", async () => {
@@ -205,6 +199,45 @@ if (musicToggle) {
     } else {
       bgMusic.muted = true;
       musicToggle.textContent = "🔇";
+    }
+  });
+}
+const bgMusic = document.getElementById("bg-music");
+const playBtn = document.getElementById("play-button");
+const introText = document.getElementById("intro-text");
+const startScreen = document.getElementById("start-screen");
+const mainContent = document.getElementById("main-content");
+const musicToggle = document.getElementById("music-toggle");
+
+if (playBtn) {
+  playBtn.addEventListener("click", async () => {
+    try {
+      await bgMusic.play();
+
+      // Hilangkan tombol ▶
+      playBtn.classList.add("hidden");
+
+      // Tampilkan teks intro
+      introText.style.display = "block";
+      introText.innerText = "Welcome to my portfolio";
+      introText.classList.add("shake");
+
+      setTimeout(() => {
+        introText.innerText = "Enjoy";
+      }, 2000);
+
+      setTimeout(() => {
+        introText.innerText = "😎";
+      }, 3100);
+
+      // Setelah selesai → hilangkan overlay & munculkan konten utama
+      setTimeout(() => {
+        startScreen.classList.add("hidden");
+        mainContent.classList.add("visible");
+      }, 5000);
+
+    } catch (err) {
+      console.log("Audio gagal diputar:", err);
     }
   });
 }
