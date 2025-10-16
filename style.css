@@ -1,6 +1,4 @@
-/* =======================
-   Global Styles
-======================= */
+
 * {
   margin: 0;
   padding: 0;
@@ -19,7 +17,6 @@ body {
   background-attachment: fixed;
 }
 
-/* Container utility */
 section {
   padding: 100px 15%;
   min-height: 100vh;
@@ -35,9 +32,6 @@ p {
   max-width: 700px;
 }
 
-/* =======================
-   Navbar
-======================= */
 .navbar {
   position: fixed;
   top: 0;
@@ -75,9 +69,6 @@ p {
   color: #4dabf7;
 }
 
-/* =======================
-   Hero Section
-======================= */
 .hero {
   display: flex;
   align-items: center;
@@ -156,9 +147,6 @@ p {
   display: block;
 }
 
-/* =======================
-   About Section
-======================= */
 .about {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 15px;
@@ -177,9 +165,6 @@ p {
   margin-bottom: 10px;
 }
 
-/* =======================
-   Skills Section
-======================= */
 .skills {
   text-align: center;
 }
@@ -207,10 +192,6 @@ p {
   70% { box-shadow: 0 0 20px rgba(77, 171, 247, 0); }
   100% { box-shadow: 0 0 0 rgba(77, 171, 247, 0); }
 }
-
-/* =======================
-   Projects Section
-======================= */
 .projects {
   text-align: center;
 }
@@ -219,9 +200,6 @@ p {
   font-style: italic;
 }
 
-/* =======================
-   Timeline Section
-======================= */
 .timeline {
   text-align: center;
   padding: 100px 20px;
@@ -251,9 +229,6 @@ p {
   box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* =======================
-   Contact Section
-======================= */
 .contact {
   text-align: center;
 }
@@ -268,9 +243,6 @@ p {
   text-decoration: underline;
 }
 
-/* =======================
-   Footer
-======================= */
 .footer {
   padding: 20px;
   text-align: center;
@@ -278,9 +250,6 @@ p {
   font-size: 14px;
 }
 
-/* =======================
-   Animations & Effects
-======================= */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -297,7 +266,6 @@ p {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Scroll Animations */
 .scroll-animate {
   opacity: 0;
   transform: translateY(40px);
@@ -312,7 +280,6 @@ p {
   transform: translateY(-20px);
 }
 
-/* Button hover glow */
 .btn {
   position: relative;
   overflow: hidden;
@@ -332,7 +299,6 @@ p {
   left: 100%;
 }
 
-/* Typewriter Cursor */
 #typewriter {
   display: inline-block;
   border-right: 2px solid #4dabf7;
@@ -340,7 +306,6 @@ p {
   overflow: hidden;
 }
 
-/* === Video Background === */
 #bg-video {
   position: fixed;
   top: 0;
@@ -352,7 +317,6 @@ p {
   filter: brightness(0.6);
 }
 
-/* === Overlay Gelap === */
 body::before {
   content: "";
   position: fixed;
@@ -364,7 +328,6 @@ body::before {
   z-index: -1;
 }
 
-/* === Start Screen Overlay === */
 #start-screen {
   position: fixed;
   top: 0;
@@ -385,7 +348,6 @@ body::before {
   pointer-events: none;
 }
 
-/* Tombol Play */
 .play-button {
   font-size: 80px;
   color: white;
@@ -405,7 +367,7 @@ body::before {
   background: rgba(255, 255, 255, 0.3);
 }
 
-/* Intro Text */
+
 .intro-text {
   font-size: 40px;
   font-weight: bold;
@@ -413,7 +375,7 @@ body::before {
   text-align: center;
 }
 
-/* Animasi getar */
+
 @keyframes shake {
   0% { transform: translate(0, 0); }
   25% { transform: translate(-3px, 0); }
@@ -424,7 +386,7 @@ body::before {
 .shake {
   animation: shake 0.5s ease-in-out infinite;
 }
-/* Music Control */
+
 #music-control {
   position: fixed;
   bottom: 20px;
@@ -448,13 +410,12 @@ body::before {
   transform: scale(1.1);
 }
 
-/* Animasi tombol play hilang */
 .play-button.hidden {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.6s ease;
 }
-/* Font khusus intro text */
+
 #intro-text {
   font-family: 'Montserrat', sans-serif;
   font-size: 48px;
@@ -464,7 +425,7 @@ body::before {
   letter-spacing: 1px;
   text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
 }
-/* Main content disembunyikan dulu */
+
 #main-content {
   opacity: 0;
   pointer-events: none;
@@ -476,7 +437,6 @@ body::before {
   pointer-events: auto;
 }
 
-/* sembunyikan main content awalnya */
 #main-content {
   opacity: 0;
   pointer-events: none;
@@ -487,7 +447,6 @@ body::before {
   pointer-events: auto;
 }
 
-/* biar tombol ▶ hilang */
 .play-button.hidden {
   display: none;
 }

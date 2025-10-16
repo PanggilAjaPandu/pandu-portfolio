@@ -1,6 +1,4 @@
-/* ============================================================
-   GLOBAL ELEMENTS
-============================================================ */
+
 const bgMusic = document.getElementById("bg-music");
 const playBtn = document.getElementById("play-button");
 const introText = document.getElementById("intro-text");
@@ -8,49 +6,57 @@ const startScreen = document.getElementById("start-screen");
 const mainContent = document.getElementById("main-content");
 const musicToggle = document.getElementById("music-toggle");
 
-// intro messages
 const introMessages = ["Welcome to my portfolio", "Enjoy", "🤘😎🖐️"];
-const durations = [2000, 1000, 2000]; // durasi tiap pesan (ms)
+const durations = [2000, 1000, 2000]; 
 
 let introIndex = 0;
 
-/* ============================================================
-   INTRO LOGIC
-============================================================ */
+
 if (playBtn) {
   playBtn.addEventListener("click", async () => {
-    // play musik (harus setelah user klik agar lolos autoplay policy)
+    // Try to play background music if available (user gesture required by browsers)
     try {
-      await bgMusic.play();
+      if (bgMusic && typeof bgMusic.play === 'function') {
+        await bgMusic.play();
+      } else {
+        console.warn('bgMusic element not found or play() unavailable.');
+      }
     } catch (err) {
-      console.log("Audio gagal diputar:", err);
+      console.warn("Audio failed to play:", err);
     }
 
-    // hilangkan tombol ▶
+    // hide play button
     playBtn.classList.add("hidden");
 
-    // tampilkan intro text
-    introText.style.display = "block";
+    // show intro text if present
+    if (introText) {
+      introText.style.display = "block";
+    }
+
     runIntroSequence();
   });
 }
 
-/**
- * jalankan teks intro bergantian
- */
 function runIntroSequence() {
+  // Defensive: ensure required elements exist
+  if (!introText || !startScreen || !mainContent) {
+    startScreen?.classList?.add?.("hidden");
+    mainContent?.classList?.add?.("visible");
+    return;
+  }
+
   if (introIndex < introMessages.length) {
     introText.textContent = introMessages[introIndex];
-    introText.classList.remove("shake"); // reset dulu
-    void introText.offsetWidth; // trik biar animasi bisa restart
+    introText.classList.remove("shake");
+    void introText.offsetWidth;
     introText.classList.add("shake");
 
+    const wait = durations[introIndex] ?? 1000;
     setTimeout(() => {
       introIndex++;
       runIntroSequence();
-    }, durations[introIndex]);
+    }, wait);
   } else {
-    // setelah selesai, fade out overlay, fade in main content
     setTimeout(() => {
       startScreen.classList.add("hidden");
       mainContent.classList.add("visible");
@@ -59,11 +65,14 @@ function runIntroSequence() {
 }
 
 
-/* ============================================================
-   MUSIC TOGGLE
-============================================================ */
+
 if (musicToggle) {
   musicToggle.addEventListener("click", () => {
+    if (!bgMusic) {
+      console.warn('No bgMusic element to toggle.');
+      return;
+    }
+
     if (bgMusic.muted) {
       bgMusic.muted = false;
       musicToggle.textContent = "🔊";
@@ -74,9 +83,7 @@ if (musicToggle) {
   });
 }
 
-/* ============================================================
-   COUNTER ANIMATION (untuk angka Followers/Projects/Claps)
-============================================================ */
+
 const counters = document.querySelectorAll(".counter");
 
 function animateCounters() {
@@ -87,7 +94,7 @@ function animateCounters() {
 
     const updateCount = () => {
       const current = +counter.innerText;
-      const increment = Math.ceil(target / 200); // makin besar makin cepat
+      const increment = Math.ceil(target / 200); 
       if (current < target) {
         counter.innerText = `${current + increment}`;
         setTimeout(updateCount, 15);
@@ -100,12 +107,10 @@ function animateCounters() {
   });
 }
 
-// jalankan animasi counter saat konten muncul
+
 window.addEventListener("load", animateCounters);
 
-/* ============================================================
-   SCROLL ANIMATION (manual selain AOS)
-============================================================ */
+
 const scrollElements = document.querySelectorAll(".scroll-animate");
 
 const elementInView = (el, offset = 100) => {
@@ -132,9 +137,7 @@ window.addEventListener("scroll", () => {
 
 handleScrollAnimation();
 
-/* ============================================================
-   TYPEWRITER EFFECT (optional kalau mau pakai di hero)
-============================================================ */
+
 const typewriter = document.getElementById("typewriter");
 if (typewriter) {
   const text = "AI Engineer | Student | Dreamer";
@@ -149,14 +152,25 @@ if (typewriter) {
   typing();
 }
 
-/* ============================================================
-   SMOOTH SCROLL (untuk klik navbar link)
-============================================================ */
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute("href")).scrollIntoView({
-      behavior: "smooth"
-    });
+    const href = this.getAttribute("href");
+
+    // If href is missing or just '#', scroll to top
+    if (!href || href === '#') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    const target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // Target not found; warn and let default behavior occur
+      console.warn(`Anchor target not found for selector: ${href}`);
+    }
   });
 });
