@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -32,6 +31,7 @@ p {
   max-width: 700px;
 }
 
+/* === NAVBAR === */
 .navbar {
   position: fixed;
   top: 0;
@@ -69,6 +69,7 @@ p {
   color: #4dabf7;
 }
 
+/* === HERO === */
 .hero {
   display: flex;
   align-items: center;
@@ -125,12 +126,31 @@ p {
   text-decoration: none;
   font-weight: 600;
   transition: 0.3s;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn:hover {
   background: #1a73e8;
 }
 
+.btn::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.15);
+  transform: rotate(25deg);
+  transition: 0.5s;
+}
+
+.btn:hover::after {
+  left: 100%;
+}
+
+/* === HERO STATS === */
 .hero-stats {
   margin-top: 40px;
   display: flex;
@@ -147,6 +167,7 @@ p {
   display: block;
 }
 
+/* === ABOUT === */
 .about {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 15px;
@@ -165,6 +186,7 @@ p {
   margin-bottom: 10px;
 }
 
+/* === SKILLS === */
 .skills {
   text-align: center;
 }
@@ -192,6 +214,8 @@ p {
   70% { box-shadow: 0 0 20px rgba(77, 171, 247, 0); }
   100% { box-shadow: 0 0 0 rgba(77, 171, 247, 0); }
 }
+
+/* === PROJECTS === */
 .projects {
   text-align: center;
 }
@@ -200,6 +224,7 @@ p {
   font-style: italic;
 }
 
+/* === TIMELINE === */
 .timeline {
   text-align: center;
   padding: 100px 20px;
@@ -229,6 +254,7 @@ p {
   box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.3);
 }
 
+/* === CONTACT === */
 .contact {
   text-align: center;
 }
@@ -243,6 +269,7 @@ p {
   text-decoration: underline;
 }
 
+/* === FOOTER === */
 .footer {
   padding: 20px;
   text-align: center;
@@ -250,6 +277,7 @@ p {
   font-size: 14px;
 }
 
+/* === ANIMASI & TRANSISI === */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -271,41 +299,18 @@ p {
   transform: translateY(40px);
   transition: all 0.8s ease;
 }
+
 .scroll-animate.show-up {
   opacity: 1;
   transform: translateY(0);
 }
+
 .scroll-animate.show-down {
   opacity: 1;
   transform: translateY(-20px);
 }
 
-.btn {
-  position: relative;
-  overflow: hidden;
-}
-.btn::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: rgba(255, 255, 255, 0.15);
-  transform: rotate(25deg);
-  transition: 0.5s;
-}
-.btn:hover::after {
-  left: 100%;
-}
-
-#typewriter {
-  display: inline-block;
-  border-right: 2px solid #4dabf7;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
+/* === VIDEO & OVERLAY === */
 #bg-video {
   position: fixed;
   top: 0;
@@ -313,7 +318,7 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -2;
+  z-index: -1; /* perbaikan agar video tampil di belakang overlay */
   filter: brightness(0.6);
 }
 
@@ -325,9 +330,10 @@ body::before {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  z-index: -1;
+  z-index: 0;
 }
 
+/* === START SCREEN === */
 #start-screen {
   position: fixed;
   top: 0;
@@ -362,12 +368,17 @@ body::before {
   cursor: pointer;
   transition: transform 0.3s ease, background 0.3s ease;
 }
+
 .play-button:hover {
   transform: scale(1.1);
   background: rgba(255, 255, 255, 0.3);
 }
 
+.play-button.hidden {
+  display: none;
+}
 
+/* === INTRO TEXT === */
 .intro-text {
   font-size: 40px;
   font-weight: bold;
@@ -375,18 +386,20 @@ body::before {
   text-align: center;
 }
 
-
 @keyframes shake {
-  0% { transform: translate(0, 0); }
-  25% { transform: translate(-3px, 0); }
-  50% { transform: translate(3px, 0); }
-  75% { transform: translate(-3px, 0); }
-  100% { transform: translate(0, 0); }
-}
-.shake {
-  animation: shake 0.5s ease-in-out infinite;
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
 }
 
+.shake {
+  animation: shake 0.5s ease;
+}
+
+/* === MUSIC CONTROL === */
 #music-control {
   position: fixed;
   bottom: 20px;
@@ -410,12 +423,7 @@ body::before {
   transform: scale(1.1);
 }
 
-.play-button.hidden {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.6s ease;
-}
-
+/* === MAIN CONTENT === */
 #intro-text {
   font-family: 'Montserrat', sans-serif;
   font-size: 48px;
@@ -435,30 +443,4 @@ body::before {
 #main-content.visible {
   opacity: 1;
   pointer-events: auto;
-}
-
-#main-content {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 1s ease;
-}
-#main-content.visible {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.play-button.hidden {
-  display: none;
-}
-@keyframes shake {
-  0% { transform: translateX(0); }
-  20% { transform: translateX(-5px); }
-  40% { transform: translateX(5px); }
-  60% { transform: translateX(-5px); }
-  80% { transform: translateX(5px); }
-  100% { transform: translateX(0); }
-}
-
-.shake {
-  animation: shake 0.5s ease;
 }
