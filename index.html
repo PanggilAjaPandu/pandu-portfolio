@@ -1,3 +1,4 @@
+<!-- REPLACE your existing index.html with this content (or merge changes) -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -13,33 +14,50 @@
 
   <!-- AOS CSS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Meta for reduced motion -->
+  <meta name="color-scheme" content="dark light">
 </head>
 <body>
 
+  <!-- Progress indicator -->
+  <div id="scroll-progress" aria-hidden="true"><div id="scroll-progress-bar"></div></div>
+
+  <!-- Background Video + Particles Canvas -->
+  <video autoplay muted loop playsinline id="bg-video" aria-hidden="true">
+    <source src="Video_Latar_Belakang_Dibuat.mp4" type="video/mp4">
+  </video>
+  <canvas id="particles" aria-hidden="true"></canvas>
+
   <!-- Overlay Start Screen -->
-  <div id="start-screen">
-    <div class="play-button" id="play-button">▶</div>
-    <div class="intro-text" id="intro-text" style="display:none; font-family: 'Montserrat', sans-serif;"></div>
+  <div id="start-screen" role="dialog" aria-modal="true">
+    <div class="start-inner">
+      <div class="play-button" id="play-button" aria-label="Start site">▶</div>
+      <div class="intro-text" id="intro-text" style="display:none; font-family: 'Montserrat', sans-serif;"></div>
+      <div class="start-controls">
+        <button id="music-toggle" aria-pressed="false" title="Toggle music">🔊</button>
+        <button id="reduce-motion-toggle" title="Reduce motion">💤</button>
+      </div>
+    </div>
   </div>
 
   <!-- Background Music -->
-  <audio id="bg-music" loop>
+  <audio id="bg-music" loop preload="none">
     <source src="bg-music.mp3" type="audio/mpeg">
-    <!-- Jika file tidak tersedia, browser akan mengabaikan -->
   </audio>
 
-  <!-- Tombol kontrol musik -->
-  <div id="music-control">
-    <button id="music-toggle">🔊</button>
+  <!-- Theme toggle (floating) -->
+  <div id="floating-controls" aria-hidden="false">
+    <button id="theme-toggle" title="Toggle theme">🌗</button>
   </div>
 
   <!-- ===== MAIN CONTENT ===== -->
-  <div id="main-content">
+  <div id="main-content" tabindex="-1">
 
     <!-- Navigation -->
-    <header class="navbar" data-aos="fade-down">
+    <header class="navbar" data-aos="fade-down" role="banner">
       <div class="logo">Pandu</div>
-      <nav>
+      <nav role="navigation" aria-label="Main navigation">
         <ul class="nav-links">
           <li><a href="#hero">Home</a></li>
           <li><a href="#about">About</a></li>
@@ -52,16 +70,16 @@
     </header>
 
     <!-- Hero -->
-    <section id="hero" class="hero">
-      <!-- Bagian kiri (teks) -->
-      <div class="hero-content">
-        <h1>Hi, I'm <span>Pandu Prayoga</span></h1>
+    <section id="hero" class="hero" aria-labelledby="hero-heading">
+      <div class="hero-left">
+        <h1 id="hero-heading">Hi, I'm <span>Pandu Prayoga</span></h1>
         <h2>Informatics Student at Brawijaya University</h2>
         <p>A student interested in how AI works. I want to create a healthier, more filtered AI environment.</p>
         <div class="hero-buttons">
           <a href="#projects" class="btn">See my work</a>
           <a href="mailto:pandskeandre@gmail.com" class="btn">Email me</a>
         </div>
+
         <div class="hero-stats">
           <div><span class="counter" data-target="82">0</span><p>Followers</p></div>
           <div><span class="counter" data-target="0">0</span><p>Projects</p></div>
@@ -69,17 +87,12 @@
         </div>
       </div>
 
-      <!-- Bagian kanan (foto) -->
-      <div class="hero-image">
-        <img src="pp.png" alt="Portrait of Pandu Prayoga" class="profile-pic">
+      <div class="hero-right">
+        <div class="hero-image">
+          <img src="pp.png" alt="Portrait of Pandu Prayoga" class="profile-pic">
+        </div>
       </div>
     </section>
-
-    <!-- Background Video -->
-    <video autoplay muted loop id="bg-video">
-      <source src="Video_Latar_Belakang_Dibuat.mp4" type="video/mp4">
-      Your browser does not support HTML5 video.
-    </video>
 
     <!-- About -->
     <section id="about" data-aos="fade-right">
@@ -129,9 +142,9 @@
         You can reach me via email at <a href="mailto:pandskeandre@gmail.com">pandskeandre@gmail.com</a>
       </p>
       <p data-aos="fade-up" data-aos-delay="400">
-        Follow my social media: 
-        <a href="https://www.instagram.com/keandre1s/" target="_blank">Instagram</a> | 
-        <a href="https://github.com/PanggilAjaPandu" target="_blank">GitHub</a>
+        Follow my social media:
+        <a href="https://www.instagram.com/keandre1s/" target="_blank" rel="noopener">Instagram</a> |
+        <a href="https://github.com/PanggilAjaPandu" target="_blank" rel="noopener">GitHub</a>
       </p>
     </section>
 
